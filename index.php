@@ -46,6 +46,8 @@ $deleteanypost = has_capability('local/greetings:deleteanymessage', $context);
 $action = optional_param('action', '', PARAM_TEXT);
 
 if ($action == 'del') {
+	require_sesskey();
+
     $id = required_param('id', PARAM_TEXT);
 
     if ($deleteanypost || $deletepost) {
@@ -58,6 +60,7 @@ $messageform = new local_greetings_message_form();
 
 if ($data = $messageform->get_data()) {
     require_capability('local/greetings:postmessages', $context);
+	require_sesskey();
 
     $message = required_param('message', PARAM_TEXT);
 
@@ -110,7 +113,7 @@ if (has_capability('local/greetings:viewmessages', $context)) {
             echo html_writer::link(
                 new moodle_url(
                     '/local/greetings/index.php',
-                    array('action' => 'del', 'id' => $m->id)
+                    array('action' => 'del', 'id' => $m->id, 'sesskey' => sesskey())
                 ),
                 $OUTPUT->pix_icon('t/delete', '') . get_string('delete')
             );
