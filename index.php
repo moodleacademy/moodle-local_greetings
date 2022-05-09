@@ -48,7 +48,7 @@ $action = optional_param('action', '', PARAM_TEXT);
 if ($action == 'del') {
     $id = required_param('id', PARAM_TEXT);
 
-    if ($deleteanypost) {
+    if ($deleteanypost || $deletepost) {
         // TODO: Confirm before deleting.
         $DB->delete_records('local_greetings_messages', array('id' => $id));
     }
@@ -105,7 +105,7 @@ if (has_capability('local/greetings:viewmessages', $context)) {
         echo html_writer::tag('small', userdate($m->timecreated), array('class' => 'text-muted'));
         echo html_writer::end_tag('p');
 
-        if ($deleteanypost) {
+        if ($deleteanypost || ($deletepost && $m->userid == $USER->id)) {
             echo html_writer::start_tag('p', array('class' => 'card-footer text-center'));
             echo html_writer::link(
                 new moodle_url(
