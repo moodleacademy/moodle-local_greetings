@@ -46,7 +46,7 @@ $deleteanypost = has_capability('local/greetings:deleteanymessage', $context);
 $action = optional_param('action', '', PARAM_TEXT);
 
 if ($action == 'del') {
-	require_sesskey();
+    require_sesskey();
 
     $id = required_param('id', PARAM_TEXT);
 
@@ -60,7 +60,7 @@ $messageform = new local_greetings_message_form();
 
 if ($data = $messageform->get_data()) {
     require_capability('local/greetings:postmessages', $context);
-	require_sesskey();
+    require_sesskey();
 
     $message = required_param('message', PARAM_TEXT);
 
