@@ -51,8 +51,17 @@ if ($action == 'del') {
     $id = required_param('id', PARAM_TEXT);
 
     if ($deleteanypost || $deletepost) {
+        $params = array('id' => $id);
+
+        // Users without permission should only delete their own post.
+        if(!$deleteanypost) {
+            $params += ['userid' => $USER->id];
+        }
+
         // TODO: Confirm before deleting.
-        $DB->delete_records('local_greetings_messages', array('id' => $id));
+        $DB->delete_records('local_greetings_messages', $params);
+
+        redirect($PAGE->url);
     }
 }
 
@@ -60,7 +69,6 @@ $messageform = new local_greetings_message_form();
 
 if ($data = $messageform->get_data()) {
     require_capability('local/greetings:postmessages', $context);
-    require_sesskey();
 
     $message = required_param('message', PARAM_TEXT);
 
