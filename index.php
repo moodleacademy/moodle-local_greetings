@@ -51,8 +51,15 @@ if ($action == 'del') {
     $id = required_param('id', PARAM_TEXT);
 
     if ($deleteanypost || $deletepost) {
+        $params = array('id' => $id);
+
+        // Users without permission should only delete their own post.
+        if(!$deleteanypost) {
+            $params += ['userid' => $USER->id];
+        }
+
         // TODO: Confirm before deleting.
-        $DB->delete_records('local_greetings_messages', array('id' => $id));
+        $DB->delete_records('local_greetings_messages', $params);
 
         redirect($PAGE->url);
     }
