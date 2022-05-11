@@ -60,7 +60,6 @@ $messageform = new local_greetings_message_form();
 
 if ($data = $messageform->get_data()) {
     require_capability('local/greetings:postmessages', $context);
-    require_sesskey();
 
     $message = required_param('message', PARAM_TEXT);
 
