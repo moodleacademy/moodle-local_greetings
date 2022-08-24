@@ -40,3 +40,5 @@ $string['greetings:deleteownmessage'] = 'Delete own message on the Greetings wal
 $string['greetings:deleteanymessage'] = 'Delete any message on the Greetings wall';
 $string['showinnavigation'] = 'Show in navigation';
 $string['showinnavigationdesc'] = 'When enabled will show link in navigation';
+$string['greetings'] = 'Greetings';
+$string['hello'] = 'Hello World';
