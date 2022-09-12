@@ -31,6 +31,13 @@ $addons = [
                     'icon' => 'earth',
                 ],
             ],
+            'greetingslist' => [
+                'delegate' => 'CoreMainMenuHomeDelegate',
+                'method' => 'mobile_view_greetings_list',
+                'displaydata' => [
+                    'title' => 'greetings',
+                ],
+            ],
         ],
         'lang' => [
             ['greetings', 'local_greetings'],
