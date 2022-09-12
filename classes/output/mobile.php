@@ -34,4 +34,16 @@ class mobile {
             ],
         ];
     }
+
+    public static function mobile_view_greetings_list($args) {
+        return [
+            'templates' => [
+                [
+                    'id' => 'main',
+                    'html' => '<h3 class="text-center">TODO: Greeting messages here</h3>',
+                ],
+            ],
+        ];
+    }
+
 }
