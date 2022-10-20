@@ -60,6 +60,7 @@ class mobile {
         }
 
         $data = [
+            'allowposting' => has_capability('local/greetings:postmessages', $context),
             'messages' => array_values($messages),
         ];
 
@@ -70,6 +71,7 @@ class mobile {
                     'html' => $OUTPUT->render_from_template('local_greetings/mobile_view_greetings_list', $data),
                 ],
             ],
+            'javascript' => file_get_contents(__DIR__ . '/../../js/mobile/view_greetings_list.js'),
         ];
 
     }

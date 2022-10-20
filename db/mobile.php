@@ -40,11 +40,15 @@ $addons = [
             ],
         ],
         'lang' => [
+            ['addmessage', 'local_greetings'],
+            ['greetings:postmessages', 'local_greetings'],
             ['greetings', 'local_greetings'],
             ['hello', 'local_greetings'],
             ['postedby', 'local_greetings'],
             ['nomessages', 'local_greetings'],
+            ['yourmessage', 'local_greetings'],
             ['messages', 'message'],
+            ['submit', 'moodle'],
         ],
     ],
 ];
