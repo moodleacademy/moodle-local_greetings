@@ -13,7 +13,4 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
-const translate = key => this.TranslateService.instant(`plugin.local_greetings.${key}`);
-const observer = this.CoreEventsProvider.on('local_greetings:messages-updated', () => this.refreshContent());
-
-this.ngOnDestroy = () => observer.off();
+this.messagesUpdated = () => this.CoreEventsProvider.trigger('local_greetings:messages-updated');

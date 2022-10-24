@@ -73,7 +73,23 @@ class mobile {
             ],
             'javascript' => file_get_contents(__DIR__ . '/../../js/mobile/view_greetings_list.js'),
         ];
+    }
 
+    public static function mobile_add_message() {
+        global $OUTPUT;
+
+        require_capability('local/greetings:postmessages', context_system::instance());
+
+        return [
+            'templates' => [
+                [
+                    'id' => 'main',
+                    'html' => $OUTPUT->render_from_template('local_greetings/mobile_add_message', []),
+                ],
+            ],
+            'otherdata' => ['message' => ''],
+            'javascript' => file_get_contents(__DIR__ . '/../../js/mobile/add_message.js'),
+        ];
     }
 
 }

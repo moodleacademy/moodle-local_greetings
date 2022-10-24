@@ -1,0 +1,15 @@
+{{=<% %>=}}
+<ion-content>
+    <ion-list>
+        <ion-item>
+            <ion-label position="floating">
+                <%#str%> yourmessage, local_greetings <%/str%>
+            </ion-label>
+            <ion-textarea [(ngModel)]="CONTENT_OTHERDATA.message"></ion-textarea>
+        </ion-item>
+        <ion-button class="ion-margin" expand="block" core-site-plugins-call-ws name="local_greetings_add_message" useOtherDataForWS
+            goBackOnSuccess="true" (onSuccess)="messagesUpdated()">
+            <%#str%> submit <%/str%>
+        </ion-button>
+    </ion-list>
+</ion-content>

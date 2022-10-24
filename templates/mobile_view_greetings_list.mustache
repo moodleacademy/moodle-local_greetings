@@ -20,7 +20,8 @@
 </div>
 
 <%#allowposting%>
-<ion-fab core-fab vertical="bottom" horizontal="end" slot="fixed" (click)="addMessage()"
+<ion-fab core-fab vertical="bottom" horizontal="end" slot="fixed"
+    core-site-plugins-new-content method="mobile_add_message" title="<%#str%> addmessage, local_greetings <%/str%>"
     [attr.aria-label]="'plugin.local_greetings.greetings:postmessages' | translate">
     <ion-fab-button>
         <ion-icon name="add"></ion-icon>
