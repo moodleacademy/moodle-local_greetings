@@ -1,0 +1,40 @@
+{{=<% %>=}}
+
+<%#canpost%>
+<ion-content>
+    <ion-list>
+    <ion-item>
+      <ion-label position="floating">
+        <%#str%> yourmessage, local_greetings <%/str%>
+      </ion-label>
+      <ion-input id="local-new-greeting"
+        placeholder="{{ 'plugin.local_greetings.yourmessagehint' | translate }}"
+        maxlength="200" [(ngModel)]="CONTENT_OTHERDATA.message">
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+    <ion-button class="ion-margin" expand="block"
+        core-site-plugins-call-ws
+        name="local_greetings_add_greeting"
+        [params]="{message: CONTENT_OTHERDATA.message, userid: <% userid %>}"
+        component="local_greetings" method="mobile_view_greetings_list"
+        goBackOnSuccess="true"
+    >
+      {{ 'plugin.local_greetings.submit' | translate }}
+    </ion-button>
+  </ion-item>
+</ion-list>
+</ion-content>
+<%/canpost%>
+
+<%^canpost%>
+  <div>
+    <ion-item padding="1em">
+      <ion-text color="info"><ion-icon name="information-circle">
+        </ion-icon>
+        <span> {{ 'plugin.local_greetings.cannotaddgreeting' | translate }}</span>
+      </ion-text>
+    </ion-item>
+  </div>
+<%/canpost%>

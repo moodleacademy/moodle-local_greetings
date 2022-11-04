@@ -61,6 +61,7 @@ class mobile {
 
         $data = [
             'messages' => array_values($messages),
+            'canpost' => has_capability('local/greetings:postmessages', $context)
         ];
 
         return [
@@ -74,4 +75,23 @@ class mobile {
 
     }
 
+    public static function mobile_view_greetings_form($args) {
+        global $OUTPUT, $USER;
+
+        $context = context_system::instance();
+
+        $data = [
+            'canpost' => has_capability('local/greetings:postmessages', $context),
+            'userid' => $USER->id,
+        ];
+
+        return [
+            'templates' => [
+                [
+                    'id' => 'main',
+                    'html' => $OUTPUT->render_from_template('local_greetings/mobile_add_greeting', $data),
+                ],
+            ],
+        ];
+    }
 }

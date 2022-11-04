@@ -18,3 +18,13 @@
 <%/messages%>
 
 </div>
+
+<%#canpost%>
+  <ion-fab core-fab vertical="bottom" horizontal="end" slot="fixed"
+    core-site-plugins-new-content component="local_greetings" method="mobile_view_greetings_form"
+    [attr.aria-label]="'plugin.local_greetings.greetings:postmessages' | translate">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+<%/canpost%>
