@@ -25,6 +25,8 @@
 
 defined('MOODLE_INTERNAL') || die();
 
+$string['addmessage'] = 'Add message';
+$string['emptymessage'] = 'Message should not be empty';
 $string['pluginname'] = 'Greetings';
 $string['greetinguser'] = 'Greetings, user.';
 $string['greetingloggedinuser'] = 'Greetings, {$a}.';

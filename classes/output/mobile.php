@@ -60,6 +60,7 @@ class mobile {
         }
 
         $data = [
+            'allowposting' => has_capability('local/greetings:postmessages', $context),
             'messages' => array_values($messages),
         ];
 
@@ -70,8 +71,25 @@ class mobile {
                     'html' => $OUTPUT->render_from_template('local_greetings/mobile_view_greetings_list', $data),
                 ],
             ],
+            'javascript' => file_get_contents(__DIR__ . '/../../js/mobile/view_greetings_list.js'),
         ];
+    }
 
+    public static function mobile_add_message() {
+        global $OUTPUT;
+
+        require_capability('local/greetings:postmessages', context_system::instance());
+
+        return [
+            'templates' => [
+                [
+                    'id' => 'main',
+                    'html' => $OUTPUT->render_from_template('local_greetings/mobile_add_message', []),
+                ],
+            ],
+            'otherdata' => ['message' => ''],
+            'javascript' => file_get_contents(__DIR__ . '/../../js/mobile/add_message.js'),
+        ];
     }
 
 }
