@@ -23,7 +23,7 @@
  */
 
 require_once('../../config.php');
-require_once($CFG->dirroot. '/local/greetings/lib.php');
+require_once($CFG->dirroot . '/local/greetings/lib.php');
 
 $context = context_system::instance();
 $PAGE->set_context($context);
@@ -32,6 +32,7 @@ $PAGE->set_pagelayout('standard');
 $PAGE->set_title($SITE->fullname);
 $PAGE->set_heading(get_string('pluginname', 'local_greetings'));
 
+$messageform = new \local_greetings\form\message_form();
 
 echo $OUTPUT->header();
 
@@ -40,5 +41,7 @@ if (isloggedin()) {
 } else {
     echo get_string('greetinguser', 'local_greetings');
 }
+
+$messageform->display();
 
 echo $OUTPUT->footer();
