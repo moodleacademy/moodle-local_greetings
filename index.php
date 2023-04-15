@@ -34,6 +34,18 @@ $PAGE->set_heading(get_string('pluginname', 'local_greetings'));
 
 $messageform = new \local_greetings\form\message_form();
 
+if ($data = $messageform->get_data()) {
+    $message = required_param('message', PARAM_TEXT);
+
+    if (!empty($message)) {
+        $record = new stdClass;
+        $record->message = $message;
+        $record->timecreated = time();
+
+        $DB->insert_record('local_greetings_messages', $record);
+    }
+}
+
 echo $OUTPUT->header();
 
 if (isloggedin()) {
@@ -43,11 +55,5 @@ if (isloggedin()) {
 }
 
 $messageform->display();
-
-if ($data = $messageform->get_data()) {
-    $message = required_param('message', PARAM_TEXT);
-
-    echo $OUTPUT->heading($message, 4);
-}
 
 echo $OUTPUT->footer();
