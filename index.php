@@ -46,8 +46,10 @@ $action = optional_param('action', '', PARAM_TEXT);
 if ($action == 'del') {
     $id = required_param('id', PARAM_TEXT);
 
-    // TODO: Confirm before deleting.
-    $DB->delete_records('local_greetings_messages', array('id' => $id));
+    if ($deleteanypost) {
+        // TODO: Confirm before deleting.
+        $DB->delete_records('local_greetings_messages', array('id' => $id));
+    }
 }
 
 $messageform = new \local_greetings\form\message_form();
