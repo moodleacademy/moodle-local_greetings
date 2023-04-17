@@ -71,6 +71,8 @@ if ($data = $messageform->get_data()) {
         $record->userid = $USER->id;
 
         $DB->insert_record('local_greetings_messages', $record);
+
+        redirect($PAGE->url); // Reload this page to load empty form.
     }
 }
 
