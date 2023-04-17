@@ -52,6 +52,8 @@ if ($action == 'del') {
     if ($deleteanypost || $deletepost) {
         // TODO: Confirm before deleting.
         $DB->delete_records('local_greetings_messages', array('id' => $id));
+
+        redirect($PAGE->url); // Reload this page to remove visible sesskey.
     }
 }
 
