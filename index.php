@@ -69,30 +69,33 @@ if ($allowpost) {
     $messageform->display();
 }
 
-$userfields = \core_user\fields::for_name()->with_identity($context);
-$userfieldssql = $userfields->get_sql('u');
+if (has_capability('local/greetings:viewmessages', $context)) {
+    $userfields = \core_user\fields::for_name()->with_identity($context);
+    $userfieldssql = $userfields->get_sql('u');
 
-$sql = "SELECT m.id, m.message, m.timecreated, m.userid {$userfieldssql->selects}
-          FROM {local_greetings_messages} m
-     LEFT JOIN {user} u ON u.id = m.userid
-      ORDER BY timecreated DESC";
+    $sql = "SELECT m.id, m.message, m.timecreated, m.userid {$userfieldssql->selects}
+              FROM {local_greetings_messages} m
+         LEFT JOIN {user} u ON u.id = m.userid
+          ORDER BY timecreated DESC";
 
-$messages = $DB->get_records_sql($sql);
+    $messages = $DB->get_records_sql($sql);
 
-echo $OUTPUT->box_start('card-columns');
+    echo $OUTPUT->box_start('card-columns');
 
-foreach ($messages as $m) {
-    echo html_writer::start_tag('div', array('class' => 'card'));
-    echo html_writer::start_tag('div', array('class' => 'card-body'));
-    echo html_writer::tag('p', format_text($m->message, FORMAT_PLAIN), array('class' => 'card-text'));
-    echo html_writer::tag('p', get_string('postedby', 'local_greetings', $m->firstname), array('class' => 'card-text'));
-    echo html_writer::start_tag('p', array('class' => 'card-text'));
-    echo html_writer::tag('small', userdate($m->timecreated), array('class' => 'text-muted'));
-    echo html_writer::end_tag('p');
-    echo html_writer::end_tag('div');
-    echo html_writer::end_tag('div');
+    foreach ($messages as $m) {
+        echo html_writer::start_tag('div', array('class' => 'card'));
+        echo html_writer::start_tag('div', array('class' => 'card-body'));
+        echo html_writer::tag('p', format_text($m->message, FORMAT_PLAIN), array('class' => 'card-text'));
+        echo html_writer::tag('p', get_string('postedby', 'local_greetings', $m->firstname), array('class' => 'card-text'));
+        echo html_writer::start_tag('p', array('class' => 'card-text'));
+        echo html_writer::tag('small', userdate($m->timecreated), array('class' => 'text-muted'));
+        echo html_writer::end_tag('p');
+        echo html_writer::end_tag('div');
+        echo html_writer::end_tag('div');
+    }
+
+    echo $OUTPUT->box_end();
 }
 
-echo $OUTPUT->box_end();
 
 echo $OUTPUT->footer();
