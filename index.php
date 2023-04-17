@@ -97,8 +97,10 @@ if (has_capability('local/greetings:viewmessages', $context)) {
 
     echo $OUTPUT->box_start('card-columns');
 
+    $cardbackgroundcolor = get_config('local_greetings', 'messagecardbgcolor');
+
     foreach ($messages as $m) {
-        echo html_writer::start_tag('div', array('class' => 'card'));
+        echo html_writer::start_tag('div', array('class' => 'card', 'style' => "background: $cardbackgroundcolor"));
         echo html_writer::start_tag('div', array('class' => 'card-body'));
         echo html_writer::tag('p', format_text($m->message, FORMAT_PLAIN), array('class' => 'card-text'));
         echo html_writer::tag('p', get_string('postedby', 'local_greetings', $m->firstname), array('class' => 'card-text'));
