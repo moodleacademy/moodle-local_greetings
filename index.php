@@ -126,7 +126,8 @@ if (has_capability('local/greetings:viewmessages', $context)) {
                     '/local/greetings/index.php',
                     ['action' => 'del', 'id' => $m->id, 'sesskey' => sesskey()]
                 ),
-                $OUTPUT->pix_icon('t/delete', '') . get_string('delete')
+                $OUTPUT->pix_icon('t/delete', get_string('delete')),
+                ['role' => 'button']
             );
             echo html_writer::end_tag('p');
         }
