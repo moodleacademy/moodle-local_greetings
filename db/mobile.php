@@ -49,6 +49,7 @@ $addons = [
             ['yourmessage', 'local_greetings'],
             ['yourmessagehint', 'local_greetings'],
             ['cannotaddgreeting', 'local_greetings'],
+            ['greetings:postmessages', 'local_greetings'],
             ['submit'],
         ],
     ],
