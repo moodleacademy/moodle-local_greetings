@@ -22,8 +22,6 @@
 
 namespace local_greetings\output;
 
-defined('MOODLE_INTERNAL') || die();
-
 class mobile {
 
     public static function view_hello() {
