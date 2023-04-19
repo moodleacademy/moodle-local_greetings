@@ -22,6 +22,8 @@
 
 namespace local_greetings\output;
 
+use context_system;
+
 class mobile {
 
     public static function view_hello() {
@@ -36,11 +38,34 @@ class mobile {
     }
 
     public static function mobile_view_greetings_list($args) {
+        global $OUTPUT, $DB;
+
+        $args = (object) $args;
+        $context = context_system::instance();
+
+        $messages = [];
+
+        if (has_capability('local/greetings:viewmessages', $context)) {
+            $userfields = \core_user\fields::for_name()->with_identity($context);
+            $userfieldssql = $userfields->get_sql('u');
+
+            $sql = "SELECT m.id, m.message, m.timecreated, m.userid {$userfieldssql->selects}
+                FROM {local_greetings_messages} m
+                LEFT JOIN {user} u ON u.id = m.userid
+                ORDER BY timecreated DESC";
+
+            $messages = $DB->get_records_sql($sql);
+        }
+
+        $data = [
+            'messages' => array_values($messages),
+        ];
+
         return [
             'templates' => [
                 [
                     'id' => 'main',
-                    'html' => '<h3 class="text-center">TODO: Greeting messages here</h3>',
+                    'html' => $OUTPUT->render_from_template('local_greetings/mobile_view_greetings_list', $data),
                 ],
             ],
         ];

@@ -1,0 +1,20 @@
+{{=<% %>=}}
+<div>
+
+<%#messages%>
+<ion-card>
+  <ion-card-header>
+    <ion-card-subtitle>{{ <% timecreated %> | coreToLocaleString }}</ion-card-subtitle>
+    <ion-card-title><% message %></ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content>
+    {{ 'plugin.local_greetings.postedby' | translate: {$a: '<% firstname %>' } }}
+  </ion-card-content>
+</ion-card>
+ <%/messages%>
+<%^messages%>
+    <p>{{ 'plugin.local_greetings.nomessages' | translate }}</p>
+<%/messages%>
+
+</div>

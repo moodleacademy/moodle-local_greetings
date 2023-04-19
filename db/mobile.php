@@ -44,6 +44,8 @@ $addons = [
         'lang' => [
             ['greetings', 'local_greetings'],
             ['hello', 'local_greetings'],
+            ['postedby', 'local_greetings'],
+            ['nomessages', 'local_greetings'],
         ],
     ],
 ];
