@@ -69,6 +69,7 @@ class mobile {
                     'html' => $OUTPUT->render_from_template('local_greetings/mobile_view_greetings_list', $data),
                 ],
             ],
+            'javascript' => file_get_contents(__DIR__ . '/../../js/mobile/view_greetings_list.js'),
         ];
 
     }
@@ -90,6 +91,7 @@ class mobile {
                     'html' => $OUTPUT->render_from_template('local_greetings/mobile_add_greeting', $data),
                 ],
             ],
+            'javascript' => file_get_contents(__DIR__ . '/../../js/mobile/add_greeting.js')
         ];
     }
 }

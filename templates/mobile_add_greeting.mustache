@@ -18,8 +18,8 @@
         core-site-plugins-call-ws
         name="local_greetings_add_greeting"
         [params]="{message: CONTENT_OTHERDATA.message, userid: <% userid %>}"
-        component="local_greetings" method="mobile_view_greetings_list"
         goBackOnSuccess="true"
+        (onSuccess)="messagesUpdated()"
     >
       {{ 'plugin.local_greetings.submit' | translate }}
     </ion-button>
