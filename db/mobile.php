@@ -20,7 +20,7 @@
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
- defined('MOODLE_INTERNAL') || die();
+defined('MOODLE_INTERNAL') || die();
 
 $addons = [
     'local_greetings' => [
@@ -46,6 +46,10 @@ $addons = [
             ['hello', 'local_greetings'],
             ['postedby', 'local_greetings'],
             ['nomessages', 'local_greetings'],
+            ['yourmessage', 'local_greetings'],
+            ['yourmessagehint', 'local_greetings'],
+            ['cannotaddgreeting', 'local_greetings'],
+            ['submit'],
         ],
     ],
 ];

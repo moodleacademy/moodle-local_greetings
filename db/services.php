@@ -1,5 +1,5 @@
 <?php
-// This file is part of Moodle - https://moodle.org/
+// This file is part of the Allocation form plugin
 //
 // Moodle is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -12,10 +12,11 @@
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+//
 
 /**
- * Plugin version and other meta-data are defined here.
+ * Setup the webservices for the plugin.
  *
  * @package     local_greetings
  * @copyright   2022 Your name <your@email>
@@ -24,8 +25,14 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->component = 'local_greetings';
-$plugin->release = '0.1.0';
-$plugin->version = 2022031901;
-$plugin->requires = 2020061500;
-$plugin->maturity = MATURITY_ALPHA;
+$functions = array(
+    'local_greetings_add_greeting' => array(
+        'classname' => 'local_greetings\external\add_greeting',
+        'methodname' => 'execute',
+        'classpath' => 'local/greetings/classes/external/add_greeting.php',
+        'description' => "Adds a greetings message.",
+        'type' => 'write',
+        'capabilities'  => 'local/greetings:postmessages',
+        'services' => array(MOODLE_OFFICIAL_MOBILE_SERVICE, 'local_mobile'),
+    ),
+);
