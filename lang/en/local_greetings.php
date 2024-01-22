@@ -48,3 +48,4 @@ $string['messagecardbgcolor'] = 'Message card color';
 $string['messagecardbgcolordesc'] = 'Background color of the message card';
 $string['greetings'] = 'Greetings';
 $string['hello'] = 'Hello World';
+$string['entername'] = 'Enter name';
