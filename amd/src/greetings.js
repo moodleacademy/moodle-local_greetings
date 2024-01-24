@@ -40,7 +40,7 @@ export const init = (userid) => {
 const registerEventListeners = (userid) => {
     document.addEventListener('click', e =>  {
         if (e.target.closest(Selectors.actions.showGreetingButton)) {
-            let greetingBlock = document.querySelector(Selectors.regions.greetingBlock);
+            const greetingBlock = document.querySelector(Selectors.regions.greetingBlock);
 
             Repository.getUser(userid)
             .then(function(response) {
@@ -48,10 +48,10 @@ const registerEventListeners = (userid) => {
             });
 
             if (greetingBlock) {
-                let name = document.querySelector(Selectors.regions.inputField);
-                let msg = document.createElement("h2");
+                const nameField = document.querySelector(Selectors.regions.inputField);
+                const msg = document.createElement("h2");
 
-                userGreeting(name.value)
+                userGreeting(nameField.value)
                 .then((greetingStr) => {
                     msg.append(greetingStr);
                     greetingBlock.append(msg);
@@ -60,11 +60,11 @@ const registerEventListeners = (userid) => {
             }
         }
         if (e.target.closest(Selectors.actions.resetButton)) {
-            let name = document.querySelector(Selectors.regions.inputField);
-            name.value = '';
+            const nameField = document.querySelector(Selectors.regions.inputField);
+            nameField.value = '';
 
-            let xx = document.querySelector(Selectors.regions.greetingBlock);
-            xx.innerHTML  = '';
+            const greetingBlock = document.querySelector(Selectors.regions.greetingBlock);
+            greetingBlock.innerHTML  = '';
         }
     });
 };
