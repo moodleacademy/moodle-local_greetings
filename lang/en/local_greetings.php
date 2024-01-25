@@ -36,6 +36,7 @@ $string['yourmessage'] = 'Your message';
 $string['yourmessagehint'] = 'Add your message here...';
 $string['cannotaddgreeting'] = 'Sorry. You cannot post a greeting message.';
 $string['editmessage'] = 'Edit message';
+$string['emptymessage'] = 'No message entered.';
 $string['norecordfound'] = 'No record found!';
 $string['cannoteditmessage'] = 'You cannot edit this message';
 $string['postedby'] = 'Posted by {$a}.';

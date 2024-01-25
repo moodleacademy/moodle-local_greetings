@@ -1,3 +1,4 @@
+<?php
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -14,36 +15,35 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * TODO describe module repository
+ * TODO describe file messages
  *
- * @module     local_greetings/local/greetings/repository
+ * @package    local_greetings
  * @copyright  2024 YOUR NAME <your@email.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-import {call as fetchMany} from 'core/ajax';
+require('../../config.php');
 
-/**
- *
- * @param {Number} userid
- * @returns
- */
-export const getUser = (userid = 0) => {
-    return fetchMany([{
-        methodname: 'core_user_get_users_by_field',
-        args: {field: 'id', values: [userid]}
-    }])[0];
-};
+require_login();
 
-/**
- *
- * @param {number} userid
- * @param {string} message
- * @returns
- */
-export const addMessage = (userid, message) => {
-    return fetchMany([{
-        methodname: 'local_greetings_add_greeting',
-        args: {userid, message}
-    }])[0];
-};
+$url = new moodle_url('/local/greetings/messages.php', []);
+$PAGE->set_url($url);
+$PAGE->set_context(context_system::instance());
+
+$PAGE->set_title($SITE->fullname);
+$PAGE->set_heading(get_string('pluginname', 'local_greetings'));
+
+$messageform = new \local_greetings\form\message_dynamic_form();
+$messageform->set_data_for_dynamic_submission();
+
+echo $OUTPUT->header();
+
+echo html_writer::div($messageform->render(), '', ['data-region' => 'form', 'class' => 'w-50']);
+
+$PAGE->requires->js_call_amd(
+    'local_greetings/greetings',
+    'addMessage',
+    ['[data-region=form]', \local_greetings\form\message_dynamic_form::class]
+);
+
+echo $OUTPUT->footer();
